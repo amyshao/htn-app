@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 export default function useIsLoggedIn() {
-  const getIsLoggedIn = async () => {
-    const isLoggedIn = await JSON.parse(sessionStorage.getItem('isLoggedIn')) || false;
+  const getIsLoggedIn = () => {
+    const isLoggedIn = JSON.parse(sessionStorage.getItem('isLoggedIn')) || false;
     return isLoggedIn;
   }
 

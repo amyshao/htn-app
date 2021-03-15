@@ -1,12 +1,7 @@
-.header {
-  font-size: 42px;
-  font-weight: 700;
+.home-page {
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
-
-.subHeader {
-  font-size: 18px;
-  font-weight: 600;
-  text-align: 'center';
-}
-
-

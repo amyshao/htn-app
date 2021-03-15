@@ -26,7 +26,6 @@ const Login = () => {
     event.preventDefault();
     if (login(email, password)) {
       setIsLoggedIn(true);
-      console.log('login', isLoggedIn);
       history.push(referrer || "/events");
       // temp solution without using redux
       window.location.reload();

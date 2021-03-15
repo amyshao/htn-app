@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import "./App.css";
 import NavBar from './components/NavBar.js';
@@ -7,11 +7,17 @@ import Login from './components/pages/login/Login';
 import Events from './components/pages/event/Events';
 import Event from './components/pages/event/Event';
 import useIsLoggedIn from "./hooks/login";
+import { createClient, Provider } from 'urql';
+
 
 const App = () => {
   const history = useHistory();
   const {isLoggedIn, setIsLoggedIn} = useIsLoggedIn();
-  
+
+  const client = createClient({
+    url: "https://api.hackthenorth.com/v3/graphql",
+  });
+
   const navBarRoutes = [
     {
       label: "Home",
@@ -38,7 +44,8 @@ const App = () => {
   return (
     <div className="App">
       <NavBar routes={navBarRoutes} />
-      <div className="body">
+      <main className="body">
+      <Provider value={client}>
         <Switch>
           <Route path="/" exact>
             <Home />
@@ -46,19 +53,21 @@ const App = () => {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/events">
+          <Route path="/events" exact>
             <Events />
           </Route>
           <Route
-            path="/event/:id"
+            path="/events/:id"
             render={(props) => (
               /* eslint-disable react/prop-types */
-              <Event itemId={props.match.params.id} />
+              <Event eventId={props.match.params.id} />
               /* eslint-enable react/prop-types */
             )}
           />
         </Switch>
-      </div>
+      </Provider>
+        
+      </main>
     </div>
   );
 };
