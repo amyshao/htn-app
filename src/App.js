@@ -1,13 +1,17 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 import "./App.css";
 import NavBar from './components/NavBar.js';
 import Home from './components/pages/home/Home';
 import Login from './components/pages/login/Login';
 import Events from './components/pages/event/Events';
 import Event from './components/pages/event/Event';
+import useIsLoggedIn from "./hooks/login";
 
 const App = () => {
+  const history = useHistory();
+  const {isLoggedIn, setIsLoggedIn} = useIsLoggedIn();
+  
   const navBarRoutes = [
     {
       label: "Home",
@@ -17,16 +21,24 @@ const App = () => {
       label: "Events",
       to: "/events",
     },
-    {
-      label: "Login",
-      to: "/login",
-    },
+    isLoggedIn
+      ? {
+          label: "Logout",
+          onClick: () => {
+            setIsLoggedIn(false);
+            history.push('/');
+          },
+        }
+      : {
+          label: "Login",
+          to: "/login",
+        },
   ];
 
   return (
     <div className="App">
       <NavBar routes={navBarRoutes} />
-      <body>
+      <div className="body">
         <Switch>
           <Route path="/" exact>
             <Home />
@@ -46,7 +58,7 @@ const App = () => {
             )}
           />
         </Switch>
-      </body>
+      </div>
     </div>
   );
 };
