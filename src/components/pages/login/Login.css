@@ -44,7 +44,7 @@ button {
 button:hover {
   border: none;
   color: black;
-  background-color: pink;
+  background-color: palevioletred;
 }
 
 .error-message {

@@ -38,7 +38,7 @@ const RelatedEvent = (props) => {
         <div>
           {event && (
             <div>
-              <Link to={`/events/${event.id}`}>{`${event.name}`}</Link>
+              <Link className="event-link" to={`/events/${event.id}`}>{`${event.name}`}</Link>
             </div>
           )}
         </div>

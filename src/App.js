@@ -59,9 +59,7 @@ const App = () => {
           <Route
             path="/events/:id"
             render={(props) => (
-              /* eslint-disable react/prop-types */
               <Event eventId={props.match.params.id} />
-              /* eslint-enable react/prop-types */
             )}
           />
         </Switch>

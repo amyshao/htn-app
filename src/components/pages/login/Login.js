@@ -8,6 +8,9 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const { isLoggedIn, setIsLoggedIn } = useIsLoggedIn();
+  
+  // get rid of isLoggedIn not used error 
+  console.log(isLoggedIn)
 
   const history = useHistory();
   const { state: { referrer } = {} } = useLocation();

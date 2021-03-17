@@ -1,12 +1,29 @@
-.header {
-  font-size: 42px;
-  font-weight: 700;
+.events-page {
+  font-size: large;
 }
 
-.subHeader {
-  font-size: 18px;
-  font-weight: 600;
-  text-align: 'center';
+table {
+  margin-left: auto;
+  margin-right: auto;
 }
 
+tr {
+  height: 50px;
+}
 
+td {
+  font-size: larger;
+  text-align: left;
+  padding: 20px;
+  vertical-align: top;
+}
+
+.event-link {
+  font-size: 30px;
+  text-decoration: none;
+  color: darkcyan
+}
+
+.event-link:hover {
+  color: palevioletred
+}
