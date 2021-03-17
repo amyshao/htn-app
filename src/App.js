@@ -4,7 +4,7 @@ import "./App.css";
 import NavBar from './components/NavBar.js';
 import Home from './components/pages/home/Home';
 import Login from './components/pages/login/Login';
-import Events from './components/pages/event/Events';
+import EventList from './components/pages/event/EventList';
 import Event from './components/pages/event/Event';
 import useIsLoggedIn from "./hooks/login";
 import { createClient, Provider } from 'urql';
@@ -55,7 +55,7 @@ const App = () => {
             <Login setParentState={setIsLoggedIn}/>
           </Route>
           <Route path="/events" exact>
-            <Events />
+            <EventList />
           </Route>
           <Route
             path="/events/:id"

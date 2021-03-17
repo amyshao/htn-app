@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Events.css";
+import "./EventList.css";
 import { useQuery } from "urql";
 
 const fetchEventQuery = `

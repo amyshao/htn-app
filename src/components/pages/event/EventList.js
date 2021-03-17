@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Events.css";
+import "./EventList.css";
 import { useQuery } from "urql";
 import useIsLoggedIn from "../../../hooks/login";
 import { parseType, parseSpeakers, parseDate } from "../../../support/parse";
@@ -46,13 +46,14 @@ const formatRows = (event) => (
   </tr>
 );
 
-const Events = () => {
+const EventList = () => {
   const { isLoggedIn } = useIsLoggedIn();
   const [events, setEvents] = useState([]);
   const [fetchEventsResult] = useQuery({
     query: fetchEventsQuery,
   });
 
+  // fetch the events list 
   useEffect(() => {
     if (
       !fetchEventsResult.error &&
@@ -101,4 +102,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default EventList;

@@ -49,6 +49,7 @@ const Event = (props) => {
     variables: { id: parseInt(eventId) },
   });
 
+  // fetch the events list 
   useEffect(() => {
     if (
       !fetchEventResult.error &&
