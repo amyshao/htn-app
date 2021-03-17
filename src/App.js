@@ -14,6 +14,7 @@ const App = () => {
   const history = useHistory();
   const {isLoggedIn, setIsLoggedIn} = useIsLoggedIn();
 
+  // set up urql client 
   const client = createClient({
     url: "https://api.hackthenorth.com/v3/graphql",
   });
@@ -51,7 +52,7 @@ const App = () => {
             <Home />
           </Route>
           <Route path="/login">
-            <Login />
+            <Login setParentState={setIsLoggedIn}/>
           </Route>
           <Route path="/events" exact>
             <Events />

@@ -3,7 +3,8 @@ import "./Login.css";
 import { useHistory, useLocation } from "react-router-dom";
 import useIsLoggedIn from "../../../hooks/login";
 
-const Login = () => {
+const Login = props => {
+  const {setParentState} = props
   const [formValid, setFormValid] = useState(true);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -29,9 +30,10 @@ const Login = () => {
     event.preventDefault();
     if (login(email, password)) {
       setIsLoggedIn(true);
+      // callback to update navbar state in parent
+      setParentState(true);
       history.push(referrer || "/events");
       // temp solution without using redux
-      window.location.reload();
     } else {
       setIsLoggedIn(false);
       setFormValid(false);
