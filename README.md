@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Hack the North Exec App (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Link to site: https://pedantic-wilson-c6bf2f.netlify.app/
 
-## Available Scripts
+## Questions
+### Walk us through your development process as you worked on this project. How did you plan out the structure and design of it? How did decide on the tools you've used? Did you encounter any problems? And if so, how did you solve them? Are there any areas of your code that you're particularly proud of or want to point out?      
+<br />
 
-In the project directory, you can run:
+I have previous experience with React and Typescript separately so at first I decided that I was going to try out Typescript with React, which was a mistake and took much longer to set up than I expected. 
 
-### `yarn start`
+After I gave up on that approach I decided to go with React and Javascript plain and simple since it's what I'm used to. I have done similar projects like a store app that navigates to different product pages, so I modelled the event navigation similarly. I wanted to avoid using boiler-plate heavy addons like Redux after being scarred by trying Typescript so I handled API requests using an urql client in the local component state. This works out fine because fetched event data isn't really shared between several components.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I anticipated the most difficult component would be to integrate the login page and have private events hidden from the user. After rejecting Redux I decided to write a custom hook to save the login state (isLoggedIn) to session storage so other components like the login page, nav bar, event page etc can easily access the login state. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This is where I encountered a problem, where because the nav bar is located above the login page (in the login page's parent component), it is not updated when the user logs in. I've realized getting a child to notify the parent to render in React isn't as straightforward as I thought. This is probably where global state managers like Redux would be useful. At first I just refreshed the whole page upon login, but this caused problems after the app was hosted, as netlify would show a page not found error. In the end I just passed in a callback function to the login component to change the nav bar state.  
 
-### `yarn test`
+I'm pretty proud of how I got a custom React hook working, as well as how I have a navbar that can update at runtime. (After login the login nav link becomes logout). Ultimately the initial time wasted with Typescript caused my overall project to be a little rushed near the end with css formating, but I'm pretty happy with the basic implementation. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br />
 
-### `yarn build`
+### Given additional time, how would you extend your application to become a fully functional product that thousands of hackers and the general public would use at Hackathon Global Inc.™'s next event?
+<br />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I've already mentioned this but I would spend time migrating in Redux as it is a better way to handle global state as well as helpful with debugging when API requests fail. I also haven't spent much time with error handling, which is important when you have a large-scale application as things can easily go wrong with API requests, incorrect data input, and other problems. I also didn't write any test cases, and those are helpful for similar reasons.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Another thing is I didn't have time to explore some of the bonus functionality that would be important, such as having a search bar or being able to filter events by type etc for a better user experience. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+One more thing is my lack of global constants and theme and structure for the overall design with css. I just had separate css sheets for each component even though many of them had common functionality, but it would be useful to store color themes etc on a single sheet for easy readability as well as increased scalability. 
